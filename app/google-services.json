@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "972447699643",
+    "project_id": "mind-mate-761c2",
+    "storage_bucket": "mind-mate-761c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972447699643:android:7e8c9981b2b30b459a0f9e",
+        "android_client_info": {
+          "package_name": "com.example.mindmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972447699643-00h8c1tikgtk1c0povcjjasq3bhh9kob.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mindmate",
+            "certificate_hash": "25f7ae603e2404cc5eb4768aefe0f76e4228bab1"
+          }
+        },
+        {
+          "client_id": "972447699643-nt0elkqbj7n4547ga96bjnnai70gamdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6CAv3HSycMd_OZSIcHpvFB6BT1VSpzhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972447699643-nt0elkqbj7n4547ga96bjnnai70gamdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
