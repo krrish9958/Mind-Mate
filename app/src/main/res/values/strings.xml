@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Mind Mate</string>
+    <string name="ForgetPasswordWarning">Enter the email associated with your account.</string>
 </resources>
