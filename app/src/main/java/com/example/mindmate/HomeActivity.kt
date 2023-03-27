@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         frameLayout = findViewById(R.id.framelayout)
-        bottomNavigationView.setOnItemReselectedListener{ item ->
+        bottomNavigationView.setOnItemSelectedListener{ item ->
             when (item.itemId) {
                 R.id.home -> {
                     replaceFragment(HomeFragment())
