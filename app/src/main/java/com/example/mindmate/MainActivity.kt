@@ -4,22 +4,23 @@ package com.example.mindmate
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+
 
 class MainActivity : AppCompatActivity() {
     // vars for google authentication
@@ -127,5 +128,14 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
             }
         }
+        if (account != null) {
+            val personName = account.displayName
+            val personGivenName = account.givenName
+            val personFamilyName = account.familyName
+            val personEmail = account.email
+            val personId = account.id
+            val personPhoto = account.photoUrl
+        }
     }
+
 }
