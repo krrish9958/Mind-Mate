@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +23,10 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var googleSignInclient: GoogleSignInClient
 
     private lateinit var signintextview : TextView
+    private lateinit var signUpCreateAccbtn : Button
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -36,6 +41,30 @@ class SignUpActivity : AppCompatActivity() {
         googleSignInclient = GoogleSignIn.getClient(this, gso)
         findViewById<Button>(R.id.gSignupBTN).setOnClickListener {
             signInGoogle()
+        }
+
+        signUpCreateAccbtn = findViewById(R.id.signUpCreateAccBtn)
+        signUpCreateAccbtn.setOnClickListener {
+            val email = findViewById<EditText>(R.id.signUpEmail).text.toString()
+            val password = findViewById<EditText>(R.id.signUpPassword).text.toString()
+            val rePassword = findViewById<EditText>(R.id.signUpRePassword).text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty() && rePassword.isNotEmpty()){
+                if (password == rePassword){
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            startActivity(Intent(this, MainActivity::class.java))
+                        }else{
+                            Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+                }else{
+                    Toast.makeText(this,"Passwords don't match!",Toast.LENGTH_SHORT).show()
+                }
+            } else{
+                Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun signInGoogle() {

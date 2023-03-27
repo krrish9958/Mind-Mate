@@ -7,21 +7,25 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 class MainActivity : AppCompatActivity() {
     // vars for google authentication
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInclient: GoogleSignInClient
+    private lateinit var user : FirebaseUser
 
     //instantiating views
     private  lateinit var signUptextview : TextView
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             signInGoogle()
         }
 
+
         //intents
         signUptextview = findViewById(R.id.signUpLogin)
         signUptextview.setOnClickListener{
@@ -55,9 +60,36 @@ class MainActivity : AppCompatActivity() {
 
         loginButton = findViewById(R.id.loginBtn)
         loginButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, LoggedInActivity::class.java))
+            val email = findViewById<EditText>(R.id.loginEmail).text.toString()
+            val password = findViewById<EditText>(R.id.loginPassword).text.toString()
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+
+                    if (it.isSuccessful) {
+                        startActivity(Intent(this, LoggedInActivity::class.java))
+                    }
+                    else {
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else{
+                Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser!=null){
+            startActivity(Intent(this@MainActivity, FeelingsActivity::class.java))
+            finish()
+        }
+        else{
+           Toast.makeText(this@MainActivity, "You need to login",Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun signInGoogle() {
         val signInIntent = googleSignInclient.signInIntent

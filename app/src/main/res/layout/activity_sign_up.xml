@@ -10,7 +10,6 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:fontFamily="@font/ubuntu"
         android:text="Mind "
         android:textColor="@android:color/darker_gray"
@@ -58,7 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/signUpEmailHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -69,6 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -78,7 +78,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/signUpPasswordHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -86,9 +86,11 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:passwordToggleEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEmailHeader">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Create Password"
@@ -98,7 +100,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
+        android:id="@+id/signUpRePasswordHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -106,9 +108,11 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        app:passwordToggleEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/signUpPasswordHeader">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signUpRePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Re-Enter Password"
@@ -118,7 +122,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/signUpCreateAccBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -131,7 +135,7 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpRePasswordHeader" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gSignupBTN"
@@ -162,11 +166,10 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="or"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpCreateAccBtn" />
 
     <TextView
         android:id="@+id/textView10"
