@@ -1,10 +1,19 @@
 package com.example.mindmate
 
+import android.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mindmate.adapter.HomeSuggestedMusic
+import com.example.mindmate.adapter.Musicdata
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +29,12 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter : HomeSuggestedMusic
+    private lateinit var musicData : ArrayList<Musicdata>
+    private lateinit var youTubePlayerView: YouTubePlayerView
+    private lateinit var videoId : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +44,47 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+////        dataInitialize()
+//        youTubePlayerView = view.findViewById(R.id.youtube_player_view)
+//        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+//            override fun onReady(youTubePlayer: YouTubePlayer) {
+//                youTubePlayer.loadVideo(videoId, 0f)
+//            }
+//        })
+        recyclerView = view.findViewById(R.id.homeMusicRecyclerView)
+        adapter = HomeSuggestedMusic(musicData)
+        recyclerView.layoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapter
+    }
+
+//    private fun dataInitialize() {
+//        musicData = arrayListOf<Musicdata>()
+//        videoId = arrayOf(
+//            getString(R.string.music_1),
+//            getString(R.string.music_2),
+//            getString(R.string.music_3),
+//            getString(R.string.music_4),
+//            getString(R.string.music_5)
+//
+//        ).toString()
+//        for (i in videoId){
+//            val data = Musicdata(videoId[i.toInt()].toString())
+//            musicData.add(data)
+//        }
+//    }
 
     companion object {
         /**
