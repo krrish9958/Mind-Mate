@@ -30,11 +30,9 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : HomeSuggestedMusic
     private lateinit var recyclerView2 : RecyclerView
-    private lateinit var adapter2 : DocsData
     private lateinit var docDataArrayList : ArrayList<DocsData>
     private lateinit var docImg : Array<Int>
     private lateinit var docName : Array<String>
-    private lateinit var docData : Array<String>
 //    private late init var musicData : ArrayList<Music data>
 //    private lateinit var youTubePlayerView: YouTubePlayerView
 //    private lateinit var videoId : String
@@ -65,13 +63,36 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
-
         recyclerView2 = view.findViewById(R.id.docs_recycler_view)
-//        adapter2 = HomeDocs(docDataArrayList)
-//        val layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
-//        recyclerView2.layoutManager = layoutManager
-//        recyclerView2.hasFixedSize()
-//        recyclerView2.adapter = adapter2
+        dataInitialize()
+        val layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        recyclerView2.layoutManager = layoutManager
+        recyclerView2.hasFixedSize()
+        recyclerView2.adapter = HomeDocs(docDataArrayList)
+    }
+
+    private fun dataInitialize() {
+        docDataArrayList = arrayListOf<DocsData>()
+        docImg = arrayOf(
+            R.drawable.therapist_1,
+            R.drawable.therapist_2,
+            R.drawable.therapist_3,
+            R.drawable.therapist_4,
+            R.drawable.therapist_5
+        )
+
+        docName = arrayOf(
+            getString(R.string.therapist_1),
+            getString(R.string.therapist_2),
+            getString(R.string.therapist_3),
+            getString(R.string.therapist_4),
+            getString(R.string.therapist_5)
+        )
+
+        for (i in docImg.indices){
+            val data = DocsData(docImg[i], docName[i])
+            docDataArrayList.add(data)
+        }
     }
 
     companion object {

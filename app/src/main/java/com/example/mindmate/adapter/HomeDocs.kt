@@ -9,10 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mindmate.R
 
 class HomeDocs(private val docsList : ArrayList<DocsData>) : RecyclerView.Adapter<HomeDocs.MyViewHolder>() {
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image : ImageView = itemView.findViewById(R.id.doc_image)
-        val name : TextView = itemView.findViewById(R.id.doc_name)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -28,6 +24,10 @@ class HomeDocs(private val docsList : ArrayList<DocsData>) : RecyclerView.Adapte
         val currentItem = docsList[position]
         holder.image.setImageResource(currentItem.image)
         holder.name.text = currentItem.name
+    }
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image : ImageView = itemView.findViewById(R.id.doc_image)
+        val name : TextView = itemView.findViewById(R.id.doc_name)
     }
 
 }
