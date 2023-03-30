@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mindmate.R
 
-class HomeSuggestedMusic(private val musicData : ArrayList<Musicdata>)
+class HomeSuggestedMusic()
     : RecyclerView.Adapter<HomeSuggestedMusic.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -16,14 +16,12 @@ class HomeSuggestedMusic(private val musicData : ArrayList<Musicdata>)
     }
 
     override fun getItemCount(): Int {
-        return musicData.size
+        return 25
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = musicData[position]
-        holder.videoId = currentItem.videoId
+
     }
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var videoId : String
     }
 }

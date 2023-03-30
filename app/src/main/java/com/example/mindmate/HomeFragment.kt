@@ -1,6 +1,5 @@
 package com.example.mindmate
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.mindmate.adapter.DocsData
+import com.example.mindmate.adapter.HomeDocs
 import com.example.mindmate.adapter.HomeSuggestedMusic
-import com.example.mindmate.adapter.Musicdata
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,9 +29,15 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter : HomeSuggestedMusic
-    private lateinit var musicData : ArrayList<Musicdata>
-    private lateinit var youTubePlayerView: YouTubePlayerView
-    private lateinit var videoId : String
+    private lateinit var recyclerView2 : RecyclerView
+    private lateinit var adapter2 : DocsData
+    private lateinit var docDataArrayList : ArrayList<DocsData>
+    private lateinit var docImg : Array<Int>
+    private lateinit var docName : Array<String>
+    private lateinit var docData : Array<String>
+//    private late init var musicData : ArrayList<Music data>
+//    private lateinit var youTubePlayerView: YouTubePlayerView
+//    private lateinit var videoId : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,35 +60,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-////        dataInitialize()
-//        youTubePlayerView = view.findViewById(R.id.youtube_player_view)
-//        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-//            override fun onReady(youTubePlayer: YouTubePlayer) {
-//                youTubePlayer.loadVideo(videoId, 0f)
-//            }
-//        })
         recyclerView = view.findViewById(R.id.homeMusicRecyclerView)
-        adapter = HomeSuggestedMusic(musicData)
+        adapter = HomeSuggestedMusic()
         recyclerView.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
-    }
 
-//    private fun dataInitialize() {
-//        musicData = arrayListOf<Musicdata>()
-//        videoId = arrayOf(
-//            getString(R.string.music_1),
-//            getString(R.string.music_2),
-//            getString(R.string.music_3),
-//            getString(R.string.music_4),
-//            getString(R.string.music_5)
-//
-//        ).toString()
-//        for (i in videoId){
-//            val data = Musicdata(videoId[i.toInt()].toString())
-//            musicData.add(data)
-//        }
-//    }
+        recyclerView2 = view.findViewById(R.id.docs_recycler_view)
+//        adapter2 = HomeDocs(docDataArrayList)
+//        val layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+//        recyclerView2.layoutManager = layoutManager
+//        recyclerView2.hasFixedSize()
+//        recyclerView2.adapter = adapter2
+    }
 
     companion object {
         /**
