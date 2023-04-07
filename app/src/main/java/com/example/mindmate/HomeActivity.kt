@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.journal -> {
-                    replaceFragment(JournalFragment())
+                    replaceFragment(JournalsFragment())
                     true
                 }
                 R.id.recommended -> {
