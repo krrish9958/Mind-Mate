@@ -6,6 +6,8 @@
         <item>@font/baloo_bhai</item>
         <item>@font/bevan</item>
         <item>@font/candal</item>
+        <item>@font/manrope</item>
+        <item>@font/manrope_bold</item>
         <item>@font/ubuntu</item>
     </array>
 </resources>
