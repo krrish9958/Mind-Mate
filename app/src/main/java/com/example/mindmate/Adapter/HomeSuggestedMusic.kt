@@ -1,4 +1,4 @@
-package com.example.mindmate.adapter
+package com.example.mindmate.Adapter
 
 import android.view.LayoutInflater
 import android.view.View

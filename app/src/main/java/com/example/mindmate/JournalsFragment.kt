@@ -21,7 +21,7 @@ class JournalsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment(InnerJournalsFragment())
+        replaceFragment(JournalsCrudFragment())
     }
 
     private fun replaceFragment(fragment: Fragment) {

@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InnerJournalsFragment">
+    tools:context=".JournalsCrudFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/myJournalsTv"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/manrope_bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/ubuntu"
             android:text="My Journals"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -24,41 +24,50 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SearchView
-            android:id="@+id/journalsSearch"
+            android:id="@+id/searchJournals"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/search_bg"
-            android:queryHint="Search"
+            android:elevation="8dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search your journals"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myJournalsTv" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+        </SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvInnerJournals"
+            android:id="@+id/recyclerViewJournals"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/journalsSearch" />
+            app:layout_constraintTop_toBottomOf="@+id/searchJournals"
+            tools:listitem="@layout/journals_list_items" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addJournalsFab"
+            android:id="@+id/addFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
-            android:layout_gravity="bottom|end"
+            android:padding="20dp"
+            android:focusable="true"
+            android:layout_marginTop="10dp"
+            android:foregroundGravity="bottom|right"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/purple_theme"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:focusable="true" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

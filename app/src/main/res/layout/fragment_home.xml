@@ -47,8 +47,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/search_bg"
-            android:queryHint="search"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profilePicCardView" />

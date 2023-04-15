@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mindmate.adapter.DocsData
-import com.example.mindmate.adapter.HomeDocs
-import com.example.mindmate.adapter.HomeSuggestedMusic
+import com.example.mindmate.Adapter.DocsData
+import com.example.mindmate.Adapter.HomeDocs
+import com.example.mindmate.Adapter.HomeSuggestedMusic
 
 class HomeFragment : Fragment() {
 
