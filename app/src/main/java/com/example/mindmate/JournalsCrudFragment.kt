@@ -150,8 +150,9 @@ class JournalsCrudFragment : Fragment(), JournalsAdapter.JournalsClickListener, 
     private fun popUpDisplay(cardView: CardView) {
 
         val popup = PopupMenu(requireContext(), cardView)
-        popup.setOnMenuItemClickListener(this)
+        popup.setOnMenuItemClickListener(this@JournalsCrudFragment)
         popup.inflate(R.menu.journals_popup)
+        popup.show()
 
     }
 
