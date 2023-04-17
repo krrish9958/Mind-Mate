@@ -1,5 +1,6 @@
 package com.example.mindmate
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -27,6 +28,7 @@ class DetailedPostActivity : AppCompatActivity() {
     private lateinit var adapter: CommentAdapter
     private lateinit var addComment : EditText
     private lateinit var imgBack : ImageView
+    private lateinit var deleteTv : TextView
     private lateinit var dbReferencePost: DatabaseReference
     private lateinit var dbReferenceComment: DatabaseReference
 
@@ -42,6 +44,7 @@ class DetailedPostActivity : AppCompatActivity() {
         addComment = findViewById(R.id.addCmntEt)
         dateTv = findViewById(R.id.datePostTv)
         imgBack = findViewById(R.id.backBtnPost)
+        deleteTv = findViewById(R.id.deleteTv)
 
         detailPostTv.text = intent.getStringExtra("postText")
         val postId = intent.getStringExtra("postId")
@@ -58,9 +61,27 @@ class DetailedPostActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        deleteTv.setOnClickListener {
+            deleteRecord(postId)
+        }
+
         dbReferencePost = FirebaseDatabase.getInstance().getReference("Posts/$postId")
         dbReferenceComment = dbReferencePost.child("Comments")
         getCommentsData()
+    }
+
+    private fun deleteRecord(postId: String?) {
+        dbReferencePost.removeValue()
+            .addOnSuccessListener {
+            Toast.makeText(this, "Post deleted successfully!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@DetailedPostActivity, HomeActivity::class.java)
+                intent.putExtra("explore_fragment", "explore_fragment_tag")
+                finish()
+                startActivity(intent)
+            }
+            .addOnFailureListener {error ->
+                Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun commentDataSave() {
@@ -76,7 +97,7 @@ class DetailedPostActivity : AppCompatActivity() {
                 Toast.makeText(this, "Comment posted successfully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { error ->
-                Toast.makeText(this, "Error occured : ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error occurred : ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -1,16 +1,21 @@
 package com.example.mindmate.Adapter
 
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mindmate.Models.CommentModel
 import com.example.mindmate.R
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class CommentAdapter(private val commentList: ArrayList<CommentModel>)
     : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
+    private lateinit var dbReference: DatabaseReference
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val itemview = LayoutInflater.from(parent.context).inflate(R.layout.comments_list, parent, false)
@@ -25,6 +30,7 @@ class CommentAdapter(private val commentList: ArrayList<CommentModel>)
         val currentComment = commentList[position]
         holder.commentText.text = currentComment.commentText
     }
+
 
     class CommentViewHolder(itemview : View) : RecyclerView.ViewHolder(itemview) {
         val commentText : TextView = itemview.findViewById(R.id.commentsTv)

@@ -39,8 +39,9 @@ class ExploreFragment : Fragment() {
         recyclerView = view.findViewById(R.id.exploreRecyclerView)
         dbReference = FirebaseDatabase.getInstance().getReference("Posts")
         postList = arrayListOf<PostModel>()
-        recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL, true)
+        recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
+        recyclerView.scrollToPosition(0)
         postTv.setOnClickListener {
             savePostsData()
         }
@@ -67,6 +68,7 @@ class ExploreFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error occured : ${error.message}", Toast.LENGTH_SHORT).show()
             }
 
+
     }
 
     private fun getPostsData() {
@@ -78,9 +80,9 @@ class ExploreFragment : Fragment() {
                         val postData = postSnap.getValue(PostModel::class.java)
                         postList.add(postData!!)
                     }
+                    postList.reverse()
                     adapter = PostAdapter(postList)
                     recyclerView.adapter = adapter
-                    recyclerView.isNestedScrollingEnabled = true
 
 
                     adapter.setOnItemClickListener(object : PostAdapter.onItemClickListener{

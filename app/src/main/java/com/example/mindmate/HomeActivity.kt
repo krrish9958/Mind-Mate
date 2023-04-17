@@ -19,6 +19,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         replaceFragment(HomeFragment())
+
+
         val acct = GoogleSignIn.getLastSignedInAccount(this@HomeActivity)
         val personName = acct?.displayName
         val personEmail = acct?.email
@@ -51,6 +53,12 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
+        // going back to the explore fragment after deleting the post from detailed post activity
+        val fragmentToDisplay = intent.getStringExtra("explore_fragment")
+        if (fragmentToDisplay=="explore_fragment_tag"){
+            replaceFragment(ExploreFragment())
+        }
+
     }
 
     private fun replaceFragment(fragment: Fragment) {
