@@ -11,4 +11,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple_theme">#8879d4</color>
     <color name="purple_theme2">#b6baed</color>
+    <color name="dark_background_color">#242526</color>
 </resources>

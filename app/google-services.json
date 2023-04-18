@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "972447699643",
+    "firebase_url": "https://mind-mate-761c2-default-rtdb.firebaseio.com",
     "project_id": "mind-mate-761c2",
     "storage_bucket": "mind-mate-761c2.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "com.example.mindmate",
             "certificate_hash": "25f7ae603e2404cc5eb4768aefe0f76e4228bab1"
+          }
+        },
+        {
+          "client_id": "972447699643-rek9t7ujimq00tfu8qdlm9l4mkfviutd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mindmate",
+            "certificate_hash": "f78c5b2a89a29fe6a53ed9c82f49daaefcae73e8"
           }
         },
         {

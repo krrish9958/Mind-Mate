@@ -2,10 +2,12 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alfa_slab_one</item>
+        <item>@font/archivo_black</item>
         <item>@font/average_sans</item>
         <item>@font/baloo_bhai</item>
         <item>@font/bevan</item>
         <item>@font/candal</item>
+        <item>@font/inter_bold</item>
         <item>@font/manrope</item>
         <item>@font/manrope_bold</item>
         <item>@font/ubuntu</item>
