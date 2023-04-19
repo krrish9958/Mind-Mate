@@ -16,13 +16,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     // vars for google authentication
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInclient: GoogleSignInClient
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
 
         auth = FirebaseAuth.getInstance()
@@ -51,12 +50,12 @@ class MainActivity : AppCompatActivity() {
         //intents
         signUptextview = findViewById(R.id.signUpLogin)
         signUptextview.setOnClickListener{
-            startActivity(Intent(this@MainActivity,SignUpActivity::class.java))
+            startActivity(Intent(this@LoginActivity,SignUpActivity::class.java))
         }
 
         forgotPasswordTv = findViewById(R.id.loginForgotPassword)
         forgotPasswordTv.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ForgotPasswordActivity::class.java))
+            startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
         }
 
         loginButton = findViewById(R.id.loginBtn)
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 
                     if (it.isSuccessful) {
-                        startActivity(Intent(this, LoggedInActivity::class.java))
+                        startActivity(Intent(this, FeelingsActivity::class.java))
                     }
                     else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
@@ -83,11 +82,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (auth.currentUser!=null){
-            startActivity(Intent(this@MainActivity, FeelingsActivity::class.java))
+            startActivity(Intent(this@LoginActivity, FeelingsActivity::class.java))
             finish()
         }
         else{
-           Toast.makeText(this@MainActivity, "You need to login",Toast.LENGTH_SHORT).show()
+           Toast.makeText(this@LoginActivity, "You need to login",Toast.LENGTH_SHORT).show()
         }
     }
 

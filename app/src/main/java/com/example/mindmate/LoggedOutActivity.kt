@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import kotlin.math.sign
 
 class LoggedOutActivity : AppCompatActivity() {
     private lateinit var signInBtn : Button
@@ -13,7 +12,7 @@ class LoggedOutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_logged_out)
         signInBtn = findViewById(R.id.signInBtn)
         signInBtn.setOnClickListener {
-            startActivity(Intent(this@LoggedOutActivity,MainActivity::class.java))
+            startActivity(Intent(this@LoggedOutActivity,LoginActivity::class.java))
         }
     }
 }

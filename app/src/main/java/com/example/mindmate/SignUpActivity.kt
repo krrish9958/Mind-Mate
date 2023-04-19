@@ -32,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
         signintextview = findViewById(R.id.signintv)
         signintextview.setOnClickListener {
-            startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
+            startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
         }
         auth= FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -53,7 +53,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (password == rePassword){
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful){
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, LoginActivity::class.java))
                         }else{
                             Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
 

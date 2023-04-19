@@ -10,6 +10,7 @@
         <item>@font/inter_bold</item>
         <item>@font/manrope</item>
         <item>@font/manrope_bold</item>
+        <item>@font/roboto_bold</item>
         <item>@font/ubuntu</item>
     </array>
 </resources>
