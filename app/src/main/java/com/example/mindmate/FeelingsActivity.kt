@@ -1,17 +1,16 @@
 package com.example.mindmate
 
 import android.content.Intent
-import android.os.Build.VERSION_CODES.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.example.mindmate.utilities.*
-import com.google.firebase.auth.FirebaseAuth
 
 class FeelingsActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
     private lateinit var username : TextView
     private lateinit var etMood : EditText
     private lateinit var tvEmoji : TextView
@@ -30,6 +29,7 @@ class FeelingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feelings)
+
         username = findViewById(R.id.usernameFeelings)
         etMood = findViewById(R.id.etMood)
         continueButton = findViewById(R.id.continueBtn)
@@ -37,80 +37,22 @@ class FeelingsActivity : AppCompatActivity() {
         continueButton.setOnClickListener {
             startActivity(Intent(this@FeelingsActivity, HomeActivity::class.java))
         }
+        saveBtn = findViewById(R.id.saveMood)
 
-        keywordsDefinition()
-        detectMood()
+        etMood.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-    }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
 
-    private fun detectMood() {
-        val userMood = etMood.text.toString().toLowerCase().trim()
+            override fun afterTextChanged(s: Editable?) {
+                keywordsDefinition()
+                detectMood()
+            }
+        })
 
-        var detectedMood : String? = null
 
-        if (happyKeywords.any{ userMood.contains(it) }) {
-            detectedMood = "happy"
-        }
-        else if (sadKeywords.any{ userMood.contains(it)}){
-            detectedMood = "sad"
-        }
-        else if (angryKeywords.any{ userMood.contains(it)}){
-            detectedMood = "angry"
-        }
-        else if (depressedKeywords.any { userMood.contains(it) }){
-            detectedMood = "depressed"
-        }
-        else if(anxiousKeywords.any { userMood.contains(it) }){
-            detectedMood = "anxious"
-        }
-        else if (scaredKeywords.any{ userMood.contains(it)}){
-            detectedMood = "scared"
-        }
-        else if (tiredKeywords.any{ userMood.contains(it)}){
-            detectedMood = "tired"
-        }
-        else if (cryingKeywords.any{ userMood.contains(it)}){
-            detectedMood = "crying"
-        }
-        else if (mehKeywords.any{ userMood.contains(it)}){
-            detectedMood = "meh"
-        }
-        else if (relievedKeywords.any{ userMood.contains(it)}){
-            detectedMood = "relieved"
-        }
-
-        when (detectedMood){
-            "happy" -> {
-                tvEmoji.text = HAPPY_EMOJI
-            }
-            "sad" -> {
-                tvEmoji.text = SAD_EMOJI
-            }
-            "depressed" -> {
-                tvEmoji.text = DEPRESSED_EMOJI
-            }
-            "angry" -> {
-                tvEmoji.text = ANGRY_EMOJI
-            }
-            "anxious" -> {
-                tvEmoji.text = NEUTRAL_EMOJI
-            }
-            "crying" -> {
-                tvEmoji.text = CRYING_EMOJI
-            }
-            "scared" -> {
-                tvEmoji.text = SCARED_EMOJI
-            }
-            "tired" -> {
-                tvEmoji.text = TIRED_EMOJI
-            }
-            "meh" -> {
-                tvEmoji.text = IDK_EMOJI
-            }
-            else -> {
-                tvEmoji.text = IDK_EMOJI
-            }
-        }
     }
 
     private fun keywordsDefinition() {
@@ -133,16 +75,16 @@ class FeelingsActivity : AppCompatActivity() {
 
         depressedKeywords = arrayListOf(
             "depressed", "hopeless", "numb", "isolated", "alone", "joyless", "defeated", "discouraged",
-            "disheartened", "lifeless", "empty", "null", "nothing", "despairing"
+            "disheartened", "lifeless", "empty", "null", "nothing", "despairing", "depress", "depression", "depressing"
         )
 
         anxiousKeywords = arrayListOf(
             "anxious", "nervous", "anxiety", "worried", "uneasy", "tense", "restless", "stressed", "panicky",
-            "panick", "unsettled", "insecure"
+            "panic", "unsettled", "insecure"
         )
 
         scaredKeywords = arrayListOf(
-            "fearful", "scared", "terrifed", "horror", "frightened", "startled", "shaken", "horror stricken"
+            "fearful", "scared", "terrified", "horror", "frightened", "startled", "shaken", "horror stricken"
         )
 
         tiredKeywords = arrayListOf(
@@ -161,5 +103,55 @@ class FeelingsActivity : AppCompatActivity() {
         relievedKeywords = arrayListOf(
             "relieved", "calm", "thankful", "released", "eased", "soothed", "glad"
         )
+    }
+
+    private fun detectMood() {
+        val userMood = etMood.text.toString().toLowerCase().trim()
+
+        var detectedMood : String? = null
+
+        if (happyKeywords.contains(userMood)) {
+            detectedMood = "happy"
+            tvEmoji.text = HAPPY_EMOJI
+        }
+        else if (sadKeywords.contains(userMood)){
+            detectedMood = "sad"
+            tvEmoji.text = SAD_EMOJI
+        }
+        else if (angryKeywords.contains(userMood)){
+            detectedMood = "angry"
+            tvEmoji.text = ANGRY_EMOJI
+        }
+        else if (depressedKeywords.contains(userMood)){
+            detectedMood = "depressed"
+            tvEmoji.text = DEPRESSED_EMOJI
+        }
+        else if(anxiousKeywords.contains(userMood)){
+            detectedMood = "anxious"
+            tvEmoji.text = NEUTRAL_EMOJI
+        }
+        else if (scaredKeywords.contains(userMood)){
+            detectedMood = "scared"
+            tvEmoji.text = SCARED_EMOJI
+        }
+        else if (tiredKeywords.contains(userMood)){
+            detectedMood = "tired"
+            tvEmoji.text = TIRED_EMOJI
+        }
+        else if (cryingKeywords.contains(userMood)){
+            detectedMood = "crying"
+            tvEmoji.text = CRYING_EMOJI
+        }
+        else if (mehKeywords.contains(userMood)){
+            detectedMood = "meh"
+            tvEmoji.text = IDK_EMOJI
+        }
+        else if (relievedKeywords.contains(userMood)){
+            detectedMood = "relieved"
+            tvEmoji.text = RELEIVED_EMOJI
+        }
+        else{
+            tvEmoji.text = ""
+        }
     }
 }
