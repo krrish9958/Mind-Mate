@@ -46,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
             signInGoogle()
         }
 
-
         //intents
         signUptextview = findViewById(R.id.signUpLogin)
         signUptextview.setOnClickListener{
@@ -66,7 +65,8 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 
                     if (it.isSuccessful) {
-                        startActivity(Intent(this, FeelingsActivity::class.java))
+                        val intent = Intent(this, FeelingsActivity::class.java)
+                        startActivity(intent)
                     }
                     else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
@@ -107,9 +107,7 @@ class LoginActivity : AppCompatActivity() {
     private fun handleResults(task: Task<GoogleSignInAccount>) {
         if (task.isSuccessful) {
             val account: GoogleSignInAccount? = task.result
-            if (account != null) {
-                updateUI(account)
-            }
+
         } else {
             Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
         }

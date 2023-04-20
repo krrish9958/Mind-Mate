@@ -8,9 +8,17 @@ import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.mindmate.utilities.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FeelingsActivity : AppCompatActivity() {
+    private lateinit var dbReference: DatabaseReference
     private lateinit var username : TextView
     private lateinit var etMood : EditText
     private lateinit var tvEmoji : TextView
@@ -30,10 +38,32 @@ class FeelingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feelings)
 
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val database = FirebaseDatabase.getInstance().reference
+        val currentUserRef = database.child("users").child(userId)
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+        currentUserRef.child(currentDate).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Mood for current date has already been tracked, launch the HomeActivity
+                    val intent = Intent(this@FeelingsActivity, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error
+            }
+        })
+
         username = findViewById(R.id.usernameFeelings)
         etMood = findViewById(R.id.etMood)
         continueButton = findViewById(R.id.continueBtn)
         tvEmoji = findViewById(R.id.tvEmoji)
+
         continueButton.setOnClickListener {
             startActivity(Intent(this@FeelingsActivity, HomeActivity::class.java))
         }
@@ -52,7 +82,30 @@ class FeelingsActivity : AppCompatActivity() {
             }
         })
 
+        saveBtn.setOnClickListener {
+            saveMoodData()
+        }
+    }
 
+    private fun saveMoodData() {
+        val moodValue = etMood.text.toString()
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        val database = FirebaseDatabase.getInstance().reference
+        val currentUserRef = database.child("users").child(userId)
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val moodRef = currentUserRef.child(currentDate)
+
+        moodRef.setValue(moodValue)
+            .addOnSuccessListener {
+            Toast.makeText(this, "Your mood was saved successfully!", Toast.LENGTH_SHORT).show()
+            etMood.text.clear()
+            val intent = Intent(this@FeelingsActivity, HomeActivity::class.java)
+            intent.putExtra("userMood", moodValue)
+            startActivity(intent)
+        }
+            .addOnFailureListener { error->
+            Toast.makeText(this,"Error: ${error.message}", Toast.LENGTH_SHORT ).show()
+        }
     }
 
     private fun keywordsDefinition() {
