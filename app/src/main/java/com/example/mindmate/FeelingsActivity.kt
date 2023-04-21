@@ -18,7 +18,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class FeelingsActivity : AppCompatActivity() {
-    private lateinit var dbReference: DatabaseReference
     private lateinit var username : TextView
     private lateinit var etMood : EditText
     private lateinit var tvEmoji : TextView
@@ -34,6 +33,7 @@ class FeelingsActivity : AppCompatActivity() {
     private lateinit var cryingKeywords : ArrayList<String>
     private lateinit var mehKeywords : ArrayList<String>
     private lateinit var relievedKeywords : ArrayList<String>
+    private lateinit var swingsKeywords : ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feelings)
@@ -156,6 +156,10 @@ class FeelingsActivity : AppCompatActivity() {
         relievedKeywords = arrayListOf(
             "relieved", "calm", "thankful", "released", "eased", "soothed", "glad"
         )
+
+        swingsKeywords = arrayListOf(
+            "mood swings"
+        )
     }
 
     private fun detectMood() {
@@ -202,6 +206,10 @@ class FeelingsActivity : AppCompatActivity() {
         else if (relievedKeywords.contains(userMood)){
             detectedMood = "relieved"
             tvEmoji.text = RELEIVED_EMOJI
+        }
+        else if (swingsKeywords.contains(userMood)){
+            detectedMood = "mood swings"
+            tvEmoji.text = MOOD_SWINGS
         }
         else{
             tvEmoji.text = ""

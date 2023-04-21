@@ -11,4 +11,5 @@ const val NEUTRAL_EMOJI =  "\ud83d\ude10"
 const val TIRED_EMOJI =  "\ud83d\ude29"
 const val RELEIVED_EMOJI =  "\ud83d\ude0c"
 const val IDK_EMOJI =  "\ud83e\udd10"
+const val MOOD_SWINGS =   "\ud83d\ude44"
 
