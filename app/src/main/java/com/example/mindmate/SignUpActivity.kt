@@ -45,28 +45,42 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpCreateAccbtn = findViewById(R.id.signUpCreateAccBtn)
         signUpCreateAccbtn.setOnClickListener {
-            val email = findViewById<EditText>(R.id.signUpEmail).text.toString()
-            val password = findViewById<EditText>(R.id.signUpPassword).text.toString()
-            val rePassword = findViewById<EditText>(R.id.signUpRePassword).text.toString()
+            createUserWithEmail()
+        }
+    }
 
-            if (email.isNotEmpty() && password.isNotEmpty() && rePassword.isNotEmpty()){
-                if (password == rePassword){
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            startActivity(Intent(this, LoginActivity::class.java))
-                        }else{
-                            Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
+    private fun createUserWithEmail() {
+        val email = findViewById<EditText>(R.id.signUpEmail).text.toString()
+        val password = findViewById<EditText>(R.id.signUpPassword).text.toString()
+        val rePassword = findViewById<EditText>(R.id.signUpRePassword).text.toString()
+
+        if (email.isNotEmpty() && password.isNotEmpty() && rePassword.isNotEmpty()){
+            if (password == rePassword){
+                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(this, "user created successfully!", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this, LoggedInActivity::class.java))
+                            } else {
+                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
 
                         }
                     }
-                }else{
-                    Toast.makeText(this,"Passwords don't match!",Toast.LENGTH_SHORT).show()
+                    else{
+                        Toast.makeText(this,it.exception.toString(),Toast.LENGTH_SHORT).show()
+                    }
                 }
-            } else{
-                Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this,"Passwords don't match!",Toast.LENGTH_SHORT).show()
             }
+        } else{
+            Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun signInGoogle() {
         val signInIntent = googleSignInclient.signInIntent
         launcher.launch(signInIntent)

@@ -22,7 +22,6 @@ class FeelingsActivity : AppCompatActivity() {
     private lateinit var etMood : EditText
     private lateinit var tvEmoji : TextView
     private lateinit var saveBtn : Button
-    private lateinit var continueButton : Button
     private lateinit var happyKeywords : ArrayList<String>
     private lateinit var sadKeywords : ArrayList<String>
     private lateinit var angryKeywords : ArrayList<String>
@@ -61,12 +60,7 @@ class FeelingsActivity : AppCompatActivity() {
 
         username = findViewById(R.id.usernameFeelings)
         etMood = findViewById(R.id.etMood)
-        continueButton = findViewById(R.id.continueBtn)
         tvEmoji = findViewById(R.id.tvEmoji)
-
-        continueButton.setOnClickListener {
-            startActivity(Intent(this@FeelingsActivity, HomeActivity::class.java))
-        }
         saveBtn = findViewById(R.id.saveMood)
 
         etMood.addTextChangedListener(object : TextWatcher {

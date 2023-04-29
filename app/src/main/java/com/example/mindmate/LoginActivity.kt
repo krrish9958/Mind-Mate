@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     // vars for google authentication
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInclient: GoogleSignInClient
-    private lateinit var user : FirebaseUser
 
     //instantiating views
     private  lateinit var signUptextview : TextView
@@ -59,23 +58,30 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton = findViewById(R.id.loginBtn)
         loginButton.setOnClickListener {
-            val email = findViewById<EditText>(R.id.loginEmail).text.toString()
-            val password = findViewById<EditText>(R.id.loginPassword).text.toString()
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            signInUserEmail()
+        }
+    }
 
-                    if (it.isSuccessful) {
-                        val intent = Intent(this, FeelingsActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    }
+    private fun signInUserEmail() {
+        val email = findViewById<EditText>(R.id.loginEmail).text.toString()
+        val password = findViewById<EditText>(R.id.loginPassword).text.toString()
+        val user = auth.currentUser
+
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val intent = Intent(this, LoggedInActivity::class.java)
+                    intent.putExtra("username", user?.displayName)
+                    intent.putExtra("email", user?.email)
+                    startActivity(intent)
+                }
+                else {
+                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
-            else{
-                Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
-            }
+        }
+        else{
+            Toast.makeText(this, "Empty fields not allowed!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -118,8 +124,8 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 val intent: Intent = Intent(this, LoggedInActivity::class.java)
-                intent.putExtra("email", account.email)
-                intent.putExtra("name", account.displayName)
+                intent.putExtra("gmail", account.email)
+                intent.putExtra("gName", account.displayName)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
