@@ -13,19 +13,19 @@
 
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/dayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/inter_medium"
             android:text="Saturday,"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/goodMorningTv" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView"
+            android:id="@+id/helloUserCardView"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="-30dp"
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/helloUserTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -55,177 +55,189 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/userProfileHome"
                     android:layout_width="53dp"
                     android:layout_height="53dp"
                     android:layout_marginStart="24dp"
                     android:src="@drawable/user_img"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                    app:layout_constraintBottom_toBottomOf="@+id/helloUserTv"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView11" />
+                    app:layout_constraintTop_toTopOf="@+id/helloUserTv" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/statsCardHome"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/light_grey"
             app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
+            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16">
+            app:layout_constraintTop_toBottomOf="@+id/homeImage">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginBottom="32dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView9"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/statsThisWeekTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/inter_bold"
                     android:text="Your stats this week - "
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/imgArrowDetails"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/baseline_keyboard_arrow_down_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                    android:src="@drawable/round_keyboard_arrow_right_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/statsThisWeekTv"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView17" />
+                    app:layout_constraintTop_toTopOf="@+id/statsThisWeekTv" />
+
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/imgMood"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginStart="36dp"
+                    android:layout_marginStart="43dp"
                     android:layout_marginTop="34dp"
                     android:src="@drawable/mood"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/statsThisWeekTv" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/tvMood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Mood"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                    app:layout_constraintStart_toStartOf="@+id/imageView8"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                    app:layout_constraintEnd_toEndOf="@+id/imgMood"
+                    app:layout_constraintStart_toStartOf="@+id/imgMood"
+                    app:layout_constraintTop_toBottomOf="@+id/imgMood" />
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginBottom="32dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView8"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/imgSleep"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginStart="20dp"
                     android:src="@drawable/sleep_score"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-                    app:layout_constraintStart_toEndOf="@+id/view2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                    app:layout_constraintBottom_toBottomOf="@+id/imgMood"
+                    app:layout_constraintEnd_toStartOf="@+id/imgWater"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toEndOf="@+id/imgMood"
+                    app:layout_constraintTop_toTopOf="@+id/imgMood"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/tvSleep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Sleep"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                    app:layout_constraintStart_toStartOf="@+id/imageView9"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                    app:layout_constraintEnd_toEndOf="@+id/imgSleep"
+                    app:layout_constraintStart_toStartOf="@+id/imgSleep"
+                    app:layout_constraintTop_toBottomOf="@+id/imgSleep" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imgWater"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="36dp"
+                    android:layout_marginEnd="43dp"
                     android:src="@drawable/water_medium"
-                    app:layout_constraintBottom_toTopOf="@+id/textView19"
+                    app:layout_constraintBottom_toTopOf="@+id/tvSleep"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view3"
-                    app:layout_constraintTop_toTopOf="@+id/imageView9" />
+                    app:layout_constraintTop_toTopOf="@+id/imgSleep" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/tvWater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Water"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                    app:layout_constraintStart_toStartOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                    app:layout_constraintEnd_toEndOf="@+id/imgWater"
+                    app:layout_constraintStart_toStartOf="@+id/imgWater"
+                    app:layout_constraintTop_toBottomOf="@+id/imgWater" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
             android:text="April 29"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textView15"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintStart_toStartOf="@+id/dayTv"
+            app:layout_constraintTop_toBottomOf="@+id/dayTv" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/weatherIconImageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/cloud_emoji"
-            app:layout_constraintBottom_toBottomOf="@+id/textView16"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
+            app:layout_constraintBottom_toBottomOf="@+id/dateTv"
+            app:layout_constraintStart_toEndOf="@+id/dayTv"
+            app:layout_constraintTop_toTopOf="@+id/dayTv" />
+
+        <TextView
+            android:id="@+id/goodMorningTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Good Morning!"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/homeImage" />
+
+        <ImageView
+            android:id="@+id/homeImage"
+            android:layout_width="181dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/morning_evening_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helloUserCardView" />
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statsCardHome" >
 
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -98,7 +98,7 @@ class ExploreFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+               Toast.makeText(requireContext(), "Error occured", Toast.LENGTH_SHORT).show()
             }
 
         })
