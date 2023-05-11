@@ -63,7 +63,7 @@ class DetailedPostActivity : AppCompatActivity() {
         }
 
         deleteTv.setOnClickListener {
-            Toast.makeText(this@DetailedPostActivity, "Its disabled currently, hold tight we're working on this!", Toast.LENGTH_SHORT).show()
+            deleteRecord(postId)
         }
 
         dbReferencePost = FirebaseDatabase.getInstance().getReference("Posts/$postId")
@@ -71,33 +71,34 @@ class DetailedPostActivity : AppCompatActivity() {
         getCommentsData()
     }
 
-//    private fun deleteRecord(postId: String?) {
-//        if (postId != null) {
-//            dbReferencePost.child(postId).addListenerForSingleValueEvent(object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    if (snapshot.exists() && snapshot.child("author").value == FirebaseAuth.getInstance().currentUser?.uid) {
-//                        dbReferencePost.child(postId).removeValue()
-//                            .addOnSuccessListener {
-//                                Toast.makeText(this@DetailedPostActivity, "Post deleted successfully!", Toast.LENGTH_SHORT).show()
-//                                val intent = Intent(this@DetailedPostActivity, HomeActivity::class.java)
-//                                intent.putExtra("explore_fragment", "explore_fragment_tag")
-//                                finish()
-//                                startActivity(intent)
-//                            }
-//                            .addOnFailureListener { error ->
-//                                Toast.makeText(this@DetailedPostActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
-//                            }
-//                    } else {
-//                        Toast.makeText(this@DetailedPostActivity, "You are not authorized to delete this post!", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    Toast.makeText(this@DetailedPostActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
-//                }
-//            })
-//        }
-//    }
+    private fun deleteRecord(postId: String?) {
+        if (postId != null) {
+            dbReferencePost.child(postId).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists() && snapshot.child("author").value == FirebaseAuth.getInstance().currentUser?.uid) {
+                        dbReferencePost.child(postId).removeValue()
+                            .addOnSuccessListener {
+                                Toast.makeText(this@DetailedPostActivity, "Post deleted successfully!", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this@DetailedPostActivity, HomeActivity::class.java)
+                                intent.putExtra("explore_fragment", "explore_fragment_tag")
+                                finish()
+                                startActivity(intent)
+                            }
+                            .addOnFailureListener { error ->
+                                Toast.makeText(this@DetailedPostActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                    else {
+                        Toast.makeText(this@DetailedPostActivity, "You are not authorized to delete this post!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@DetailedPostActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
 
 
     private fun commentDataSave() {
