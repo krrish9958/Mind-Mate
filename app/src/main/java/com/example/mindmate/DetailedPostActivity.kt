@@ -63,7 +63,8 @@ class DetailedPostActivity : AppCompatActivity() {
         }
 
         deleteTv.setOnClickListener {
-            deleteRecord(postId)
+//            deleteRecord(postId)
+            Toast.makeText(this, "This is disabled, we're working on it! Hang tight", Toast.LENGTH_SHORT).show()
         }
 
         dbReferencePost = FirebaseDatabase.getInstance().getReference("Posts/$postId")
