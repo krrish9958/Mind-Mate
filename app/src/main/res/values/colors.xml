@@ -23,4 +23,10 @@
     <color name="palette_6">#f8f7fc</color>
 
 
+    //diffcolor
+    <color name="darkbg">#1b1f29</color>
+    <color name="greyblueish">#7292b1</color>
+    <color name="bluee">#3152ae</color>
+    <color name="lightgrey">#d8dadd</color>
+
 </resources>
