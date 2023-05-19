@@ -62,7 +62,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:hint="date"
-        android:textColor="@color/purple_theme2"
+        android:textColor="@color/palette_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postDetailTv" />
 

@@ -12,23 +12,24 @@
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/ubuntu"
-            android:text="Explore"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Share your story, without sacrificing your privacy"
             android:textSize="23sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
         <EditText
             android:id="@+id/etPost"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="80dp"
             android:background="@null"
             android:ems="10"
@@ -37,7 +38,7 @@
             android:maxLines="8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <TextView
             android:id="@+id/postTv"
@@ -49,19 +50,29 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/etPost"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/etPost"
             app:layout_constraintTop_toTopOf="@+id/etPost" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/exploreRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etPost"
             tools:listitem="@layout/post_items" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/explore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
