@@ -25,7 +25,7 @@ class ProfileFragment : Fragment() {
    private lateinit var datePickeEt :TextView
     private lateinit var datePickerBtn : ImageView
     private lateinit var logoutBtn : Button
-
+    private lateinit var editProfile : TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +45,12 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        editProfile = view.findViewById(R.id.editProfile)
+        editProfile.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         datePickeEt = view.findViewById(R.id.dobEt)
         val myCalender = Calendar.getInstance()
